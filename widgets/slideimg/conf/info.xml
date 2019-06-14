@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<widget version="0.2"> 
+	<title xml:lang="ko">이미지 슬라이드 위젯</title> 
+	<description xml:lang="ko">여러가지 종합 슬라이드 효과를 담았습니다. 이미지 설명에 HTML 사용이 가능합니다. 단, 쌍따옴표 사용은 자제 부탁드립니다.</description> 
+	<version>1.1.4</version> 
+	<date>업데이트 : 2019년 03월 13일</date> 
+	<author email_address="admin@leedm.me" link="https://hanb.jp"> 
+		<name xml:lang="ko">한빛가람(HanbitGaram)</name> 
+	</author> 
+
+ 	<extra_vars>
+		<var id="delay_p">
+ 			<name xml:lang="ko">슬라이더 간격</name> 
+ 			<type>text</type>
+ 			<description xml:lang="ko">슬라이더가 넘어가는 간격을 설정합니다.
+			단위는 ms입니다.(1000=1초, 500 = 0.5초, 10000 = 10초 기본 = 3초)</description> 
+ 		</var>
+		<var id="effect_p" type="select">
+ 			<name xml:lang="ko">슬라이더 효과 유무</name> 
+ 			<options>
+				<value>1</value>
+				<name xml:lang="ko">유</name>
+			</options>
+			<options>
+				<value>2</value>
+				<name xml:lang="ko">무</name>
+			</options>
+		</var>
+
+  		<var id="count_p" type="select">
+ 			<name xml:lang="ko">페이지 수</name> 
+ 			<options>
+				<value>1</value>
+				<name xml:lang="ko">1</name>
+			</options>
+			<options>
+				<value>2</value>
+				<name xml:lang="ko">2</name>
+			</options>
+			<options>
+				<value>3</value>
+				<name xml:lang="ko">3</name>
+			</options>
+			<options>
+				<value>4</value>
+				<name xml:lang="ko">4</name>
+			</options>
+			<options>
+				<value>5</value>
+				<name xml:lang="ko">5</name>
+			</options>
+ 			<description xml:lang="ko">표시할 페이지 수를 정합니다.</description> 
+ 		</var>
+
+ 		<var id="smslide_1">
+ 			<name xml:lang="ko">첫번째 이미지</name> 
+ 			<type>text</type>
+ 			<description xml:lang="ko">첫번째로 나올 이미지를 설정합니다.</description> 
+ 		</var>
+		<var id="smslide_1_url">
+ 			<name xml:lang="ko">첫번째 이미지 연결링크</name> 
+ 			<type>text</type>
+ 			<description xml:lang="ko">첫번째로 나올 이미지 주소를 설정합니다. 없으면 생략합니다.</description> 
+ 		</var>
+		<var id="smslide_1_text">
+ 			<name xml:lang="ko">첫번째 이미지 설명 (html 사용가능)</name> 
+ 			<type>textarea</type>
+ 			<description xml:lang="ko">첫번째로 나올 이미지 설명을 입력합니다.</description> 
+ 		</var>
+		<var id="smslide_1_target" type="select">
+ 			<name xml:lang="ko">첫번째 이미지 타겟</name> 
+ 			<options>
+				<value></value>
+				<name xml:lang="ko">현재</name>
+			</options>
+			<options>
+				<value>_blank</value>
+				<name xml:lang="ko">새창</name>
+			</options>
+		</var>
+
+		<var id="smslide_2">
+ 			<name xml:lang="ko">두번째 이미지</name> 
+ 			<type>text</type>
+ 			<description xml:lang="ko">두번째로 나올 이미지를 설정합니다.</description> 
+ 		</var>
+		<var id="smslide_2_url">
+ 			<name xml:lang="ko">두번째 이미지 연결링크</name> 
+ 			<type>text</type>
+ 			<description xml:lang="ko">두번째로 나올 이미지 주소를 설정합니다. 없으면 생략합니다.</description> 
+ 		</var>
+		<var id="smslide_2_text">
+ 			<name xml:lang="ko">두번째 이미지 설명 (html 사용가능)</name> 
+ 			<type>textarea</type>
+ 			<description xml:lang="ko">두번째로 나올 이미지 설명을 입력합니다.</description> 
+ 		</var>
+		<var id="smslide_2_target" type="select">
+ 			<name xml:lang="ko">두번째 이미지 타겟</name> 
+ 			<options>
+				<value></value>
+				<name xml:lang="ko">현재</name>
+			</options>
+			<options>
+				<value>_blank</value>
+				<name xml:lang="ko">새창</name>
+			</options>
+		</var>
+
+		<var id="smslide_3">
+ 			<name xml:lang="ko">세번째 이미지</name> 
+ 			<type>text</type>
+ 			<description xml:lang="ko">세번째로 나올 이미지를 설정합니다.</description> 
+ 		</var>
+		<var id="smslide_3_url">
+ 			<name xml:lang="ko">세번째 이미지 연결링크</name> 
+ 			<type>text</type>
+ 			<description xml:lang="ko">세번째로 나올 이미지 주소를 설정합니다. 없으면 생략합니다.</description> 
+ 		</var>
+		<var id="smslide_3_text">
+ 			<name xml:lang="ko">세번째 이미지 설명 (html 사용가능)</name> 
+ 			<type>textarea</type>
+ 			<description xml:lang="ko">세번째로 나올 이미지 설명을 입력합니다.</description> 
+ 		</var>
+		<var id="smslide_3_target" type="select">
+ 			<name xml:lang="ko">세번째 이미지 타겟</name> 
+ 			<options>
+				<value></value>
+				<name xml:lang="ko">현재</name>
+			</options>
+			<options>
+				<value>_blank</value>
+				<name xml:lang="ko">새창</name>
+			</options>
+		</var>
+
+		<var id="smslide_4">
+ 			<name xml:lang="ko">네번째 이미지</name> 
+ 			<type>text</type>
+ 			<description xml:lang="ko">네번째로 나올 이미지를 설정합니다.</description> 
+ 		</var>
+		<var id="smslide_4_url">
+ 			<name xml:lang="ko">네번째 이미지 연결링크</name> 
+ 			<type>text</type>
+ 			<description xml:lang="ko">네번째로 나올 이미지 주소를 설정합니다. 없으면 생략합니다.</description> 
+ 		</var>
+		<var id="smslide_4_text">
+ 			<name xml:lang="ko">네번째 이미지 설명 (html 사용가능)</name> 
+ 			<type>textarea</type>
+ 			<description xml:lang="ko">네번째로 나올 이미지 설명을 입력합니다.</description> 
+ 		</var>
+		<var id="smslide_4_target" type="select">
+ 			<name xml:lang="ko">네번째 이미지 타겟</name> 
+ 			<options>
+				<value></value>
+				<name xml:lang="ko">현재</name>
+			</options>
+			<options>
+				<value>_blank</value>
+				<name xml:lang="ko">새창</name>
+			</options>
+		</var>
+
+		<var id="smslide_5">
+ 			<name xml:lang="ko">다섯번째 이미지</name> 
+ 			<type>text</type>
+ 			<description xml:lang="ko">다섯번째로 나올 이미지를 설정합니다.</description> 
+ 		</var>
+		<var id="smslide_5_url">
+ 			<name xml:lang="ko">다섯번째 이미지 연결링크</name> 
+ 			<type>text</type>
+ 			<description xml:lang="ko">다섯번째로 나올 이미지 주소를 설정합니다. 없으면 생략합니다.</description> 
+ 		</var>
+		<var id="smslide_5_text">
+ 			<name xml:lang="ko">다섯번째 이미지 설명 (html 사용가능)</name> 
+ 			<type>textarea</type>
+ 			<description xml:lang="ko">다섯번째로 나올 이미지 설명을 입력합니다.</description> 
+ 		</var>
+		<var id="smslide_5_target" type="select">
+ 			<name xml:lang="ko">다섯번째 이미지 타겟</name> 
+ 			<options>
+				<value></value>
+				<name xml:lang="ko">현재</name>
+			</options>
+			<options>
+				<value>_blank</value>
+				<name xml:lang="ko">새창</name>
+			</options>
+		</var>
+	</extra_vars>
+
+</widget> 

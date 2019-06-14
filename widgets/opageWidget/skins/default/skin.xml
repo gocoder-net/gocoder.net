@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+	<title xml:lang="ko">외부페이지 출력 위젯 기본 스킨</title>
+	<description xml:lang="ko">다른 처리 없이 순수한 외부페이지만 보여주는 스킨입니다.</description>
+	<version>1.0</version>
+	<date>2014-08-09</date>
+	<author email_address="dh1024@gmail.com" link="http://eundong.net">
+		<name xml:lang="ko">Eundong</name>
+	</author>
+</skin>

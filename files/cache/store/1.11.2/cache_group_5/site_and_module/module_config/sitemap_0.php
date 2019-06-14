@@ -1,0 +1,3 @@
+<?php
+if(!defined('__XE__')) { exit(); }
+return 'O:8:"stdClass":16:{s:16:"error_return_url";s:49:"/index.php?module=admin&act=dispSitemapAdminIndex";s:3:"act";s:28:"procSitemapAdminInsertConfig";s:6:"module";s:5:"admin";s:15:"xe_validator_id";s:27:"modules/sitemap/tpl/index/1";s:11:"use_sitemap";s:1:"Y";s:17:"use_mid_exception";s:1:"Y";s:11:"use_lastmod";s:1:"Y";s:17:"sitemap_extension";s:1:"0";s:17:"except_module_srl";s:7:"180,385";s:22:"sitemap_document_count";s:3:"100";s:16:"xml_sitemap_page";s:1:"1";s:16:"use_search_index";s:1:"N";s:14:"except_deleted";s:1:"Y";s:13:"except_secret";s:1:"Y";s:12:"except_admin";s:1:"Y";s:7:"metatag";s:3:"all";}';

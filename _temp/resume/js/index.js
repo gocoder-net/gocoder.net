@@ -1,0 +1,21 @@
+$(function () {
+
+    var $resumeBtn = $('.resume-enter'),
+    $shadow = $('.wawe'),
+    $intro = $('.intro'),
+    $lineTop = $('.line'),
+    $resume = $('.resume');
+
+    var tl = new TimelineMax();
+
+    $resumeBtn.click(function () {
+        tl.to($resumeBtn, 0.1, { autoAlpha: 0 });
+        tl.to($intro, 1, { top: "180px" });
+        tl.from($lineTop, 1, { height: "80px" }, "-=0.5").
+        to($lineTop, 1, { autoAlpha: 1 }, "-=0.5");
+        tl.to($resume, 0.5, { display: "block " }, "-=0.5").
+        to($resume, 0.5, { autoAlpha: 1 }, "-=0.5");
+
+    });
+
+});

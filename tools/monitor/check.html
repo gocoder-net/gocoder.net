@@ -1,0 +1,195 @@
+<!DOCTYPE>
+		
+<html>
+	<head>
+	 <style>
+		body{
+			width: 100%;
+			height: 100%;          
+		}
+		.lcd{
+			width: 100%;
+			height: 100%;          
+		}
+		a:link {color:white; text-decoration:none;}
+	    a:visited {color:white; text-decoration:none;}
+
+		.box{
+		margin: 0px 2px;border-radius:50%;float:left;
+		width:50px;height:50px;
+		outline: 1px solid transparent;
+		background: Crimson ;
+
+	/*	animation:animationName 2s 0s infinite ease-in-out alternate;	*/
+		}
+
+		.box:nth-child(2){animation-delay: 0.2s; background: CadetBlue ;}
+		.box:nth-child(3){animation-delay: 0.3s; background: HotPink  ;}
+		.box:nth-child(4){animation-delay: 0.4s; background: DodgerBlue ;}
+		.box:nth-child(5){animation-delay: 0.5s; background: Gold ;}
+		.box:nth-child(5){animation-delay: 0.5s; background: Yellow ;}
+
+
+			
+		@keyframes animationName {
+				0%{margin: 0px 2px;}
+				70%{margin: 400px 2px; opacity: 1;}
+				100%{margin:180px 2px; opacity: 1;}
+		}
+
+		.layer{position:absolute;top:0;left:0;width:100%;height:100%;text-align:center;font-size:50px;}
+		.layer .content{display:inline-block;background:;vertical-align:middle}
+		.layer .blank{display:inline-block;width:0;height:100%;vertical-align:middle}
+		 </style>
+
+		<script src="http://gocoder.net/common/js/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.6/jquery.jgrowl.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.6/jquery.jgrowl.css"/>	 
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			<?php 
+				require $_SERVER["DOCUMENT_ROOT"].'/common/tpl/include.html';
+			?>
+     </head>
+     <body>
+	<div class="lcd">
+	
+	<div id="intro" class="layer">
+	  <span class="content"><br>F11를 눌러서 전체화면을 해주세요<br>그리고 화면을 터치하거나 <br> 마우스로 클릭하여 테스트 해보세요.</span>
+	  <span class="blank"></span>
+	</div>
+
+	<div class="layer" id="fontsizediv" style="display:none;">
+		<span class="content" id="fontsize" style="font-size:1px;">
+		<?php
+		 for($i = 0; $i < 2000; $i++) {
+			 echo "고코더넷(http://gocoder.net) ";    
+		 }
+		?></span>
+		<span class="blank"></span>
+	</div>
+
+	<div class="box" style="display:none;"></div>
+	<div class="box" style="display:none;"></div>
+	<div class="box" style="display:none;"></div>
+	<div class="box" style="display:none;"></div>
+	<div class="box" style="display:none;"></div>
+
+	</div>
+    </body>
+
+	</html>
+	<script type="text/javascript">
+
+    color = ["Red","Orange","Yellow","Green","Blue","Indigo","Violet","Black"];
+    color_seq = -1;
+    color_gradient = 0;
+    color_cycle = 0;
+    message_box = true;
+
+    $('.lcd').on('click', function(){
+        color_seq = color_seq+1;
+        $("#intro").hide();
+        if (color[color_seq] == undefined)
+        {
+            color_seq = 0;    //컬러 순서
+            color_cycle = color_cycle + 1    //모드 끝날때
+            message_box = true;
+        }
+
+        color_change();
+    });
+
+    function color_change(){
+    
+        if (color_cycle == 0){
+            if (message_box == true){            
+                $.jGrowl("1.불량화소 색상 테스트<br>불량 도트를 확인해보세요. <br> color test", {
+                  beforeOpen: function(e,m,o){
+                                    
+                  }                    
+                });
+                message_box = false;
+            }                                        
+            $("body").css({
+                background : "linear-gradient(to bottom, "+color[color_seq]+", "+color[color_seq]+")"
+            });
+        }else if(color_cycle == 1){
+            if (message_box == true){
+                $.jGrowl("2.명암 테스트<br>자연스럽게 명암비가 표현되는지 확인해보세요<br> gradien test", {});
+                message_box = false;
+            }    
+            $("body").css({
+                background : "linear-gradient(to bottom, "+color[color_seq]+", white)"
+            });
+        }else if(color_cycle == 2){
+			$("#fontsizediv").show();   
+
+            $("body").css({
+                background : "linear-gradient(to bottom, white, white)"
+            });
+            
+
+            if (message_box == true){
+                $.jGrowl("3.가독성체크<br>글자가 잘 읽히는지 확인해보세요.", {
+			        beforeOpen: function(e,m,o){                                   
+                	$("#fontsizediv").show();   
+						$("#fontsize").css({
+							fontSize : "10px"
+						});
+                  }                   
+                });
+                message_box = false;
+            }            
+
+			if (color_seq == 1){
+				$("#fontsize").css({
+					fontSize : "15"
+	            });
+			}else{
+				$("#fontsize").css({
+					fontSize : String(color_seq)+"0"
+	            });
+			}
+
+        }else if(color_cycle == 3){
+            $("body").css({
+                background : "linear-gradient(to bottom, white, white)"
+            });
+            $("#fontsizediv").hide();    
+
+            if (message_box == true){
+                $.jGrowl("4.응답속도 체크 <br>공의 움직임이 버벅 거리지 않는지 확인해보세요", {
+                
+                });
+                $.jGrowl("응답속도 변경 <br><a href='javascript:speed(0.5)'>많이 빠르게(클릭)</a><br><a href='javascript:speed(1)'>빠르게(클릭)</a><br><a href='javascript:speed(2)'>보통(클릭)</a><br><a href='javascript:speed(3)'>느리게(클릭)</a><br><a href='javascript:speed(4)'>더 느리게(클릭)</a>", {
+                    theme: 'manilla',
+                    sticky: true                            
+                });
+
+                $.jGrowl("<a href='/'>처음부터 다시(클릭)</a><br><a href='http://gocoder.net' target='_blank'>개발자 홈 고코더넷으로 (클릭)</a>", {                    
+                    sticky: true                            
+                });
+                message_box = false;
+            }    
+            $(".box").show();            
+            $(".box").css({
+                animation : "animationName 2s 0s infinite ease-in-out alternate"
+            });                
+        }            
+    };
+    function speed(s){
+
+        $(".box").css({
+            animation : "animationName "+s+"s 0s infinite ease-in-out alternate"
+        });                
+    }
+</script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 

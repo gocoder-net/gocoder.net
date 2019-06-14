@@ -1,0 +1,59 @@
+{@ $widget_info->slider_name = 'gySliderBot_'.rand(100000,500000).rand(100000,500000);}
+
+<script type="text/javascript">
+			jQuery(function($){
+			
+			  $('.{$widget_info->slider_name}').owlCarousel({
+				nav:true,
+				items:1,
+				loop:true,
+				autoplay:true,
+				autoplayTimeout:7000,
+				margin:0
+               
+             });
+		});
+		</script>
+
+<div class="wrap_owl owl-normal owl-normal-ITC">
+	<div class="owl-carousel {$widget_info->slider_name} ">
+	<!--@foreach($widget_info->content_items as $key => $item)-->
+		<div class="item">
+			<!--@if($item->getThumbnail())-->
+			<a class="slide_link" href="{$item->getLink()}" target="_blank"|cond="$widget_info->new_window"><img src="{$item->getThumbnail()}" alt=""></a>
+			<!--@else-->
+			<a class="slide_link" href="{$item->getLink()}" target="_blank"|cond="$widget_info->new_window"><img src="img/noneLarge_img.gif" alt=""></a>
+			<!--@end-->
+			<div class="wrap_slide_title door_bg">
+			<!--@for($j=0,$c=count($widget_info->option_view_arr);$j<$c;$j++)-->
+				<!--@if($widget_info->option_view_arr[$j]=='title')-->
+				<h3 class="slide_title">
+					<a href="{$item->getLink()}" class="title" target="_blank"|cond="$widget_info->new_window">{$item->getTitle($widget_info->subject_cut_size)}</a>
+				</h3>
+				<!--@else if($widget_info->option_view_arr[$j]=='content')-->
+				<p class="DWcontent">
+					<a href="{$item->getLink()}" class="title" target="_blank"|cond="$widget_info->new_window">{$item->getContent()}</a>	
+				</p>
+				<!-- <a href="{$item->getLink()}" target="_blank"|cond="$widget_info->new_window" class="slide_more">More</a> -->
+				<div class="wrap_DW_Rep">
+					<!--@if($widget_info->show_comment_count=='Y' && $item->getCommentCount())-->
+					<span class="DW_Rep">
+						<i class="xi-message"></i><a href="{$item->getLink()}#comment" class="DW_Replies"><span>{$item->getCommentCount()}</span></a>
+					</span>
+					<!--@elseif($widget_info->show_comment_count=='Y')-->
+					<span class="DW_Rep">
+						<i class="xi-message"></i><span class="DW_Replies">0</span>
+					</span>
+					<!--@end-->
+					 <span class="wrap_date"><i class="xi-calendar"></i><span class="slide_block">{$item->getRegdate("m-d")}</span></span>
+				</div>
+				<!--@end-->
+			<!--@end-->
+				<a class="ornament door_bg" href="{$item->getLink()}" target="_blank"|cond="$widget_info->new_window"></a>
+			</div>
+			
+		</div>
+	<!--@end-->
+	</div>
+</div>
+

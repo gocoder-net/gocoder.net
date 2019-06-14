@@ -1,0 +1,179 @@
+﻿<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>qr code create</title>
+</head>
+<body>
+<div class="container" >
+	QR코드 배경화면 선택<br>
+	<input id="fileupload" type="file" name="files[]" multiple><br>
+	QR코도 데이터<br>
+	<input id="qrText" type="text" ><br>
+	QR코도 가로 사이즈<br>
+	<input id="width" type="text" ><br>
+	QR코도 세로 사이즈<br>
+	<input id="height" type="text" ><br>
+	<input id="qrGo" type="button" value="QR버튼 만들기" onclick="qrCreate()"><Br>
+	<input id="qrGo" type="button" value="이미지 다운로드" onclick="html2img()"><Br>
+</div>
+
+
+<div id="files" class="files" style="width: 500px;height: 500px;">
+	<div style="width: 500px;position: absolute;" id="gcParentDiv">
+		<div style="position: relative; top: 100px; left: 100px;" id="gcDiv">
+		</div>
+	</div>
+</div>
+
+<img id="showPic" src="" style="display:none;">
+<img id="theimage" src="" style="display:none;">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script> 
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->	
+<script src="js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="js/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="js/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="js/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="js/jquery.fileupload-validate.js"></script>
+<script type="text/javascript" src="jquery.qrcode.js"></script>
+<script type="text/javascript" src="qrcode.js"></script>
+<script src="http://gocoder.net/common/js/html2canvas.js"></script>
+<script>
+function qrCreate(){
+	var w = $("#width").val();
+	var h = $("#height").val();
+	var url = $("#qrText").val();
+
+	$('#gcDiv').html('').qrcode({
+		render	: "table",
+		width : w,
+		height : h,
+		text	: url
+	}).draggable();	
+
+ 
+}
+
+function  html2img(){
+  var canvas ="";
+
+	html2canvas($("#files"), {
+    onrendered: function(canvas) {
+
+    $('#showPic', parent.document).attr("src",canvas.toDataURL());
+        document.getElementById("theimage").src = canvas.toDataURL();
+        saveAs(canvas.toDataURL(), 'gocoder_net.png');
+    }       
+  });    
+}
+
+function saveAs(uri, filename) {
+
+    var link = document.createElement('a');
+
+    if (typeof link.download === 'string') {
+
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+
+    } else {
+
+        window.open(uri);
+
+    }
+}
+
+</script>
+
+<script>
+/*jslint unparam: true, regexp: true */
+/*global window, $ */
+$(function () {
+    'use strict';
+    // Change this to the location of your server-side upload handler:
+    var url = window.location.hostname === 'blueimp.github.io' ?
+                '//jquery-file-upload.appspot.com/' : 'server/php/',
+        uploadButton = $('<button/>')
+            .addClass('btn btn-primary')
+            .prop('disabled', true)
+            .text('Processing...')
+            .on('click', function () {
+                var $this = $(this),
+                    data = $this.data();
+                $this
+                    .off('click')
+                    .text('Abort')
+                    .on('click', function () {
+                        $this.remove();
+                        data.abort();
+                    });
+                data.submit().always(function () {
+                    $this.remove();
+                });
+            });
+    $('#fileupload').fileupload({
+        url: url,
+        dataType: 'json',
+        autoUpload: false,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        maxFileSize: 999000,
+        // Enable image resizing, except for Android and Opera,
+        // which actually support image resizing, but fail to
+        // send Blob objects via XHR requests:
+        disableImageResize: /Android(?!.*Chrome)|Opera/
+            .test(window.navigator.userAgent),
+        previewMaxWidth: 500,
+        previewMaxHeight: 500,
+        previewCrop: true
+    }).on('fileuploadadd', function (e, data) {
+        data.context = $('<div/>').appendTo('#files');
+        $.each(data.files, function (index, file) {
+            var node = $('<p/>');
+			$("#files > div > p > canvas").remove();
+            node.appendTo(data.context);
+//			$("body > div.container > span").hide();
+        });
+    }).on('fileuploadprocessalways', function (e, data) {
+        var index = data.index,
+            file = data.files[index],
+            node = $(data.context.children()[index]);
+        if (file.preview) {
+            node
+                .prepend(file.preview);
+        }
+
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</body>
+</html>
+
+

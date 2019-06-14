@@ -1,0 +1,24 @@
+<?php
+$lang->sitemap_info='사이트맵을 사용하시려면 .htaccess에 다음을 추가하셔야 합니다.<br /><b>RewriteRule ^sitemap([0-9]*)\.xml$ ./index.php?module=sitemap&act=sitemap&page=$1 [L]</b>';
+$lang->sitemap='사이트맵';
+$lang->use_mid_exception='짧은 주소 사용';
+$lang->about_use_mid_exception='mid 값을 제외한 default permanent URL값을 사용합니다.';
+$lang->use_lastmod='마지막 수정 시간 사용';
+$lang->about_use_lastmod='사이트맵에 lastmod tag를 추가합니다.';
+$lang->sitemap_extension='사이트맵 확장자';
+$lang->general='일반';
+$lang->image='이미지';
+$lang->video='비디오';
+$lang->search_index='검색 색인';
+$lang->except_module='제외 모듈';
+$lang->sitemap_document_count='사이트맵 글 수';
+$lang->about_sitemap_document_count='하나의 사이트맵에 출력할 글의 수를 선택합니다.';
+$lang->send_ping='핑 보내기';
+$lang->about_sitemap_submit='핑을 보내서 사이트맵을 제출합니다.';
+$lang->download='다운로드';
+$lang->about_sitemap_download='사이트맵을 텍스트 파일로 다운로드 합니다.';
+$lang->about_xml_sitemap_download='제출용 사이트맵을 xml로 다운로드 합니다.';
+$lang->except_deleted='삭제글 제외';
+$lang->except_secret='비밀글 제외';
+$lang->except_admin='관리자 페이지 제외';
+$lang->metatag='메타태그';

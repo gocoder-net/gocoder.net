@@ -1,0 +1,315 @@
+<html>
+    <head>
+        <title>배경안에 QR코드 만들기</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="http://gocoder.net/tools/qrcode/assets/css/main.css" />
+        <?php
+        require $_SERVER["DOCUMENT_ROOT"].'/common/tpl/include.html';
+        ?>
+    </head>
+    <body class="left-sidebar">
+        <div id="page-wrapper">
+
+            <!-- Header -->
+                <div id="header-wrapper">
+                    <div id="header" class="container">
+                        <!-- Logo -->
+                            <h1 id="logo"><a href="index.html"><img src="http://gocoder.net/img/gocoder_main_logo.png"><Br>
+                            배경안에 QR코드 만들기</a></h1>
+                            <p>QR코드를 배경사진으로 꾸며보세요.</p>
+                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <!-- 고코더넷용 반응형 광고배너 -->
+                                <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-client="ca-pub-7021588608655306"
+                                 data-ad-slot="7578002039"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                                <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                    </div>
+                </div>
+
+            <!-- Main -->
+                <div id="main-wrapper">
+                    <div id="main" class="container">
+                        <div class="row">
+                            <!-- Sidebar -->
+                                <div id="sidebar" class="4u 12u(mobile)">
+
+                                    <!-- Excerpts -->
+                                        <section>
+                                            <ul class="divided">
+                                                <li>
+                                                    <!-- Excerpt -->
+                                                        <article class="box excerpt">
+                                                            <header>    
+                                                                <h3>QR코드를 배경화면과 꾸며보세요.</h3>
+                                                            </header>
+
+                                                            <div class="container" >
+
+                                                                <div class="12u 12u(mobile)">
+                                                                    <div class="6u 12u(mobile)">
+                                                                    1.QR코드 배경화면(500x500)선택<br>
+                                                                    <input id="fileupload" type="file" name="files[]" multiple >
+                                                                </div>
+
+                                                                <div class="12u 12u(mobile)">
+                                                                    <div class="6u 12u(mobile)">
+                                                                    2.QR코드 데이터<br>
+                                                                    <textarea id="qrText" type="text" >http://gocoder.net</textarea>
+                                                                </div>
+                                                                <div class="12u 12u(mobile)">
+                                                                    <div class="12u 12u(mobile)">
+                                                                    3. QR코드 가로 사이즈<br>
+                                                                        <input id="width" type="text" value="100" ><br>
+                                                                    </div>
+                                                                    <div class="12u 12u(mobile)">
+                                                                    4. QR코드 세로 사이즈<br>
+                                                                        <input id="height" type="text" value="100"><br>
+                                                                    </div>
+                                                                    <div class="12u">
+                                                                    5. 생성하기 <br>
+                                                                        <input id="" type="button" value="QR코드 생성하기" onclick="qrCreate()" ><Br>
+                                                                        <input id="" type="button" value="QR코드 다운로드" onclick="html2img('#gcDiv > canvas','false')" style="background:#71ed6a;"><Br>
+																		<input id="" type="button" value="QR이미지 다운로드" onclick="html2img('#files','ture')" style="background:#6a79ed;">           											
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </article>
+                                                </li>                                    
+                                            </ul>
+                                        </section>
+                                </div>
+
+
+
+                            <!-- Content -->
+                                <div id="content" class="8u 12u(mobile) important(mobile)">
+
+                                    <!-- Post -->
+                                        <article class="box post">
+                                            <header>
+                                                <h3><strong>배경화면을</strong> 지정해보세요. <P> <strong>QR코드</strong>를 원하는 곳으로 드래그 하세요.</h3>
+                                                <h3>캡쳐 이미지 크기는 <strong>500x500</strong> 고정으로 캡쳐됩니다.<P>이미지는 서버에 업로드 되지 않습니다.</h3>                                    
+                                                
+                                            </header>
+                                            <span class="image featured" style="width: 505px;height: 505px;" >
+
+                                                                                            
+                                            <div id="files" class="files" style="width: 500px;height: 500px;" id="qrimage">
+                                                <div style="width: 500px;position: absolute;" id="gcParentDiv">
+                                                    <div style="position: relative; top: 100px; left: 100px;" id="gcDiv">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                                </span>
+                                            
+                                            <p> </p>
+                                        </article>
+
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+
+<img id="showPic" src="" style="display:none;">
+<img id="theimage" src="" style="display:none;">
+
+    </body>
+
+        <!-- Scripts -->
+            <script src="http://gocoder.net/tools/qrcode/assets/js/jquery.min.js"></script>
+            <script src="http://gocoder.net/tools/qrcode/assets/js/jquery.dropotron.min.js"></script>
+            <script src="http://gocoder.net/tools/qrcode/assets/js/skel.min.js"></script>
+            <script src="http://gocoder.net/tools/qrcode/assets/js/skel-viewport.min.js"></script>
+            <script src="http://gocoder.net/tools/qrcode/assets/js/util.js"></script>
+            <!--[if lte IE 8]><script src="http://gocoder.net/tools/qrcode/assets/js/ie/respond.min.js"></script><![endif]-->
+            <script src="http://gocoder.net/tools/qrcode/assets/js/main.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="http://gocoder.net/tools/qrcode/js/vendor/jquery.ui.widget.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="http://gocoder.net/tools/qrcode/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="http://gocoder.net/tools/qrcode/js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->    
+<script src="http://gocoder.net/tools/qrcode/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="http://gocoder.net/tools/qrcode/js/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="http://gocoder.net/tools/qrcode/js/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="http://gocoder.net/tools/qrcode/js/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="http://gocoder.net/tools/qrcode/js/jquery.fileupload-validate.js"></script>
+<script type="text/javascript" src="./js/jquery.qrcode.js"></script>
+<script type="text/javascript" src="./js/qrcode.js"></script>
+<script src="http://gocoder.net/common/js/html2canvas.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+<script>
+$(document).ready(function() {
+    $('#files').effect("highlight", {}, 1500);
+});
+function qrCreate(){
+    var w = $("#width").val();
+    var h = $("#height").val();
+    var url = $("#qrText").val();
+
+    $('#gcDiv').html('').qrcode({
+
+        width : w,
+        height : h,
+        text    : url,
+		colorDark : "#000000",
+        colorLight : "#ffffff"
+    }).draggable();    
+    $('#gcDiv').effect("shake");
+}
+
+function html2img(a,b){
+	if (b == 'true')
+	{
+		if ($("#files > div > p > canvas").val() == undefined){
+			alert("배경 이미지를 불러와주세요.");
+			return false;
+		};
+	}
+	
+	if (b == 'false')
+	{
+		if ($("#gcDiv > canvas").val() == undefined){
+			alert("QR코드를 생성해주세요.");
+			return false;
+		};
+	}
+	
+	
+  var canvas ="";
+
+    html2canvas($(a), {
+    onrendered: function(canvas) {
+
+    $('#showPic', parent.document).attr("src",canvas.toDataURL());
+        document.getElementById("theimage").src = canvas.toDataURL();
+        saveAs(canvas.toDataURL(), 'gocoder_net.jpg');
+    }        
+  });    
+
+}
+
+function saveAs(uri, filename) {
+
+    var link = document.createElement('a');
+
+    if (typeof link.download === 'string') {
+
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+
+    } else {
+
+        window.open(uri);
+
+    }
+}
+
+</script>
+
+<script>
+/*jslint unparam: true, regexp: true */
+/*global window, $ */
+$(function () {
+    'use strict';
+    // Change this to the location of your server-side upload handler:
+    var url = window.location.hostname === 'blueimp.github.io' ?
+                '//jquery-file-upload.appspot.com/' : 'server/php/',
+        uploadButton = $('<button/>')
+            .addClass('btn btn-primary')
+            .prop('disabled', true)
+            .text('Processing...')
+            .on('click', function () {
+                var $this = $(this),
+                    data = $this.data();
+                $this
+                    .off('click')
+                    .text('Abort')
+                    .on('click', function () {
+                        $this.remove();
+                        data.abort();
+                    });
+                data.submit().always(function () {
+                    $this.remove();
+                });
+            });
+    $('#fileupload').fileupload({
+        url: url,
+        dataType: 'json',
+        autoUpload: false,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        maxFileSize: 999000,
+        // Enable image resizing, except for Android and Opera,
+        // which actually support image resizing, but fail to
+        // send Blob objects via XHR requests:
+        disableImageResize: /Android(?!.*Chrome)|Opera/
+            .test(window.navigator.userAgent),
+        previewMaxWidth: 500,
+        previewMaxHeight: 500,
+        previewCrop: true
+    }).on('fileuploadadd', function (e, data) {
+        data.context = $('<div/>').appendTo('#files');
+        $.each(data.files, function (index, file) {
+            var node = $('<p/>');
+            $("#files > div > p > div > canvas").remove();
+            $("#files > div > p > canvas").remove();
+            node.appendTo(data.context);
+//            $("body > div.container > span").hide();
+        });
+    }).on('fileuploadprocessalways', function (e, data) {
+        var index = data.index,
+            file = data.files[index],
+            node = $(data.context.children()[index]);
+        if (file.preview) {
+            node
+                .prepend(file.preview);
+        }
+//        $("#files > div > p > canvas").draggable().resizable();
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+</script>
+
+
+
+
+
+</html>
+

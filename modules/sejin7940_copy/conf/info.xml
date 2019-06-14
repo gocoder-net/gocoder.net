@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+	<title xml:lang="ko">게시판 설정 복사 (sejin7940_copy)</title>
+	<description xml:lang="ko">sejin7940_copy		
+	</description>
+	<version>1.3.3</version>
+	<date>2015-10-29</date>
+	<category>service</category>
+	<author email_address="sejin7940@nate.com" link="http://sejin7940.co.kr">
+		<name xml:lang="ko">sejin7940</name>
+	</author>
+</module>

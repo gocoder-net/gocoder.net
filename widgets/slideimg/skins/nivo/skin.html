@@ -1,0 +1,111 @@
+<!--%import("./css/default.css")-->
+<!--%import("./css/nivo-slider.css")-->
+	<?php
+		$sm = $smSlideView =array();
+		$pyeonbeop = "";
+		if(!function_exists('sm_nansu_maker')){
+			function sm_nansu_maker($number){
+				$string = "abcdefghijklmnopqrstuvwxyz0123456789";
+				$stringArray = str_split($string);
+				$return = "";
+				for($i=0; $i<$number; $i++){
+					shuffle($stringArray);
+					$return .= $stringArray[0];
+				}
+				return $return.substr(md5(microtime()),0,5);
+			}
+		}
+		$slideName  = 'slider_'.sm_nansu_maker(5).mt_rand(0,9999);
+		$sm['count_p'] = Context::get('count_p');
+	?>
+	 <div class="slider-wrapper theme-default">
+		<div id="<?php echo $slideName; ?>" class="nivoSlider">
+		<?php
+			for($i=1; $i<=(int)$sm['count_p']; $i++){
+				$smSlideSRC[$i] = Context::get('smslide_'.$i);
+				$smSlideURL[$i] = Context::get('smslide_'.$i.'_url');
+				$smSlideTarget[$i] = Context::get('smslide_'.$i.'_target');
+				if($smSlideURL[$i]==""){
+					$smSlideURL[$i]="#";
+				}
+				$smSlideTEXT[$i] = Context::get('smslide_'.$i.'_text');
+				//$smSlideTEXT[$i] = str_replace("\"", "", $smSlideTEXT[$i]);
+			}
+		?>
+		<!--@if(!$delay_p)-->
+		{@
+		$delay_p="3000";
+		}
+		<!--@end-->
+		<?php for($i=1; $i<=(int)$sm['count_p']; $i++){ ?>
+		<?php
+			if(!trim($smSlideTarget[$i])){
+				$smSlideTarget[$i] = "_self";
+			}
+		?>
+		 <a href="{@ $pyeonbeop } <?php echo $smSlideURL[$i]; ?>"  class="<?php echo $slideName; ?>_img" target="<?php echo $smSlideTarget[$i]; ?>">
+			<img src="{@ $pyeonbeop } <?php echo $smSlideSRC[$i]; ?>" title="<?php echo $smSlideTEXT[$i]; ?>">
+		 </a>
+		 <?php } ?> 
+		</div>
+    </div>
+	<span class="<?php echo $slideName; ?>_data" style="display:none;" data-time="{$delay_p}"></span>
+    <!--%import("jquery.js")-->
+    <!--%import("nivo.js")-->
+	<!--@if($effect_p=="2")-->
+	<script>
+	 //Default settings
+    $.fn.nivoSlider.defaults = {
+        slices: 15,
+        boxCols: 8,
+        boxRows: 4,
+        animSpeed: 500,
+        pauseTime: <?php if((int)Context::get('delay_p')=="" || (int)Context::get('delay_p')<=0){echo 3000;}else{echo (int)Context::get('delay_p');}; ?>,
+        startSlide: 0,
+        directionNav: true,
+        controlNav: true,
+        controlNavThumbs: false,
+        pauseOnHover: true,
+        manualAdvance: false,
+        prevText: 'Prev',
+        nextText: 'Next',
+        randomStart: false,
+        beforeChange: function(){},
+        afterChange: function(){},
+        slideshowEnd: function(){},
+        lastSlide: function(){},
+        afterLoad: function(){}
+    };
+	</script>
+	<!--@elseif($effect_p=="1")-->
+	<script>
+	 //Default settings
+    $.fn.nivoSlider.defaults = {
+        effect: 'random',
+        slices: 15,
+        boxCols: 8,
+        boxRows: 4,
+        animSpeed: 500,
+        pauseTime: <?php if((int)Context::get('delay_p')=="" || (int)Context::get('delay_p')<=0){echo 3000;}else{echo (int)Context::get('delay_p');}; ?>,
+        startSlide: 0,
+        directionNav: true,
+        controlNav: true,
+        controlNavThumbs: false,
+        pauseOnHover: true,
+        manualAdvance: false,
+        prevText: 'Prev',
+        nextText: 'Next',
+        randomStart: false,
+        beforeChange: function(){},
+        afterChange: function(){},
+        slideshowEnd: function(){},
+        lastSlide: function(){},
+        afterLoad: function(){}
+    };
+	</script>
+<!--@end-->
+    <script type="text/javascript">
+    $(window).load(function() {
+        $('#<?php echo $slideName; ?>').nivoSlider();
+    });
+    </script>

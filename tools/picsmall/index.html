@@ -1,0 +1,398 @@
+	<?php
+header('Content-Type: text/html; charset=UTF-8');
+
+function thumbnail($file, $save_filename, $file_ext, $width_size, $height_size, $percent) 
+{ 
+
+		if (strtolower($file_ext) == "gif"){
+	        $src_img = ImageCreateFromGif($file); //JPG파일로부터 이미지를 읽어옵니다 
+		}
+		if (strtolower($file_ext) == "jpg"){
+	        $src_img = ImageCreateFromJPEG($file); //JPG파일로부터 이미지를 읽어옵니다 
+		}
+		if (strtolower($file_ext) == "png"){
+	        $src_img = ImageCreateFromPng($file); //JPG파일로부터 이미지를 읽어옵니다 
+		}
+
+        $img_info = getImageSize($file);//원본이미지의 정보를 얻어옵니다 
+        $img_width = $img_info[0]; 
+        $img_height = $img_info[1]; 
+
+//		if($img_width<$img_height) { 
+//		// 가로가 세로보다 클경우 
+//				$sumw = (100*$height_size)/$img_height; 
+//				$img_width = ceil(($img_width*$sumw)/100); 
+//				$img_height = $height_size; 
+//
+//		} else { 
+//		// 세로가 가로보다 클경우 
+//				$sumh = (100*$width_size)/$img_width; 
+//				$img_height = ceil(($img_height*$sumh)/100); 
+//				$img_width = $width_size; 
+//		} 
+
+
+        $dst_width = ($img_width / 100) * $percent  ;
+        $dst_height = ($img_height /100) * $percent; //가로세로 사이즈를 원본이미지의 반으로 설정합니다 
+        $dst_img = imagecreatetruecolor($dst_width, $dst_height); //타겟이미지를 생성합니다 
+
+        ImageCopyResized($dst_img, $src_img, 0, 0, 0, 0, $dst_width, $dst_height, $img_width, $img_height); //타겟이미지에 원하는 사이즈의 이미지를 저장합니다 
+							  		
+        ImageInterlace($dst_img); 
+        
+		if (strtolower($file_ext) == "gif"){
+			ImageGif($dst_img,  "./thumnails/".$save_filename); //실제로 이미지파일을 생성합니다 
+		}
+		if (strtolower($file_ext) == "jpg"){
+	        ImageJpeg($dst_img,  "./thumnails/".$save_filename); //실제로 이미지파일을 생성합니다 
+		}
+		if (strtolower($file_ext) == "png"){
+	        ImagePng($dst_img,  "./thumnails/".$save_filename); //실제로 이미지파일을 생성합니다 
+		}
+
+        ImageDestroy($dst_img); 
+        ImageDestroy($src_img); //메모리상의 이미지를 삭제합니다. 
+
+		$out[0] = "./thumnails/".$save_filename;
+		$out[1] = $dst_width;
+		$out[2] = $dst_height;
+		return $out;
+
+} 
+
+		$save_dir = "./uploads/";
+
+		$file_ext = explode(".", strrev($_FILES["upload_file"]["name"]));
+		$file_ext = strrev($file_ext[0]);
+
+		 if(is_uploaded_file($_FILES["upload_file"]["tmp_name"])){
+			  $dest = $save_dir . $_FILES["upload_file"]["name"];
+			  move_uploaded_file($_FILES["upload_file"]["tmp_name"],$dest);				 
+		}	
+?>
+<!DOCTYPE HTML>
+<!--
+	Directive by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Thumnail Make :: gocoder.net</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="/tools/picsmall/assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		
+		<!-- 메타태그 / SEO 시작 -->
+		<meta property="og:title" content="THUMNAIL MAKE">
+		<meta name="description" content="image Thumnail make">
+		<meta name="Keywords" content="image Thumnail make, image small">
+		<meta property="og:description" content="image Thumnail make, image small">
+		<meta property="og:url" content="http://picsmall.gocoder.net/">
+		<link rel="canonical" href="http://picsmall.gocoder.net/">
+		<!-- 메타태그 / SEO 끝 -->
+
+		<?php 
+		require $_SERVER["DOCUMENT_ROOT"].'/common/tpl/include.html';
+		?>
+		<script type="text/javascript">
+			 
+			$( document ).ready(function() {
+				$("input[type=file]").bind( 'change', function (e){
+					if( !$(this).val() ) return;					 
+					var f = this.files[0];
+					var size = f.size || f.fileSize;
+					var limit = 5000000;
+									 								 
+					if( size > limit )
+					{
+						alert( 'Only under 5MB' );
+						$(this).val('');
+						return;
+					}							
+				});
+			});
+
+			function check(){
+				var fileName = $("#upload_file").val();																			 
+				fileName = fileName.slice(fileName.indexOf(".") + 1).toLowerCase();
+				if(fileName != "jpg" && fileName != "png" &&  fileName != "gif" ){
+					alert("Only jpg, png, and gif formats are allowed.");
+					$("#upload_file").val("");
+					return false;
+				}
+			}
+
+		</script>
+	</head>
+	<body>
+
+		<!-- Header -->
+			<div id="header">
+				<div class="">
+				<a href="http://gocoder.net" target="_blank"><img src="http://gocoder.net/img/gocoder_main_logo.png">	
+				</a>
+				</div>
+				<a href="/">
+				<h1>Thumnail Make</h1>
+				<h3>(썸네일 만들기)</h3>
+				</a>
+				<p>
+				Upload the file. We'll create a thumbnail.<br/>
+				<!-- (이미지를 업로드 하세요! 썸네일로 만들어 드립니다.)	  -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 고코더넷용 반응형 광고배너 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7021588608655306"
+     data-ad-slot="7578002039"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>	
+
+				 </p> 
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+										
+				<header class="major container 75%">
+				<form  onsubmit="return check();" enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+				<input type="file" class="button special" name="upload_file" id="upload_file"/>
+				<input type="submit" value="upload" name="submit"/>
+				<br/><br/><br/><br/><br/>
+
+				</form>
+				</header>
+	  				<div class="box alt container">
+	<? if(isset($_POST['submit'])) {	?>
+	<?php
+	$type = substr($_FILES["upload_file"]["name"], strrpos($_FILES["upload_file"]["name"], '.')); 	
+	$thumPic =	thumbnail($dest,"90_"."gocoder_net".$type,$file_ext,1280,720,90); 
+	?>
+					<section class="feature left">
+						<a href="<?=$thumPic[0]?>" class="image fa-signal"><img src="<?=$thumPic[0]?>" alt="" width="100%"/></a>
+						<div class="content">
+							<h3>90%</h3>
+							<p>
+							가로 : <?=$thumPic[1]?>	   <br>
+							세로 : <?=$thumPic[2]?>							
+							</p>
+						</div>
+					</section>
+	<?php
+
+	$thumPic =	thumbnail($dest,"80_"."gocoder_net".$type,$file_ext,250,250,80); 
+	?>
+					<section class="feature right">
+						<a href="<?=$thumPic[0]?>" class="image fa-code"><img src="<?=$thumPic[0]?>" alt=""  width="100%" /></a>
+						<div class="content">
+							<h3>80%</h3>
+							<p>
+							가로 : <?=$thumPic[1]?>	   <br>
+							세로 : <?=$thumPic[2]?>							
+							</p>
+						</div>
+					</section>
+	<?php
+	$thumPic =	thumbnail($dest,"70_"."gocoder_net".$type,$file_ext,300,300,70); 
+	?>				
+					<section class="feature left">
+						<a href="<?=$thumPic[0]?>" class="image fa-signal"><img src="<?=$thumPic[0]?>" alt=""  width="100%" /></a>
+						<div class="content">
+							<h3>70%</h3>
+							<p>
+							가로 : <?=$thumPic[1]?>	   <br>
+							세로 : <?=$thumPic[2]?>							
+							</p>
+						</div>
+					</section>
+	<?php
+	$thumPic =	thumbnail($dest,"60_"."gocoder_net".$type,$file_ext,300,300,60); 
+	?>				
+					<section class="feature right">
+						<a href="<?=$thumPic[0]?>" class="image fa-signal"><img src="<?=$thumPic[0]?>" alt=""  width="100%" /></a>
+						<div class="content">
+							<h3>60%</h3>
+							<p>
+							가로 : <?=$thumPic[1]?>	   <br>
+							세로 : <?=$thumPic[2]?>							
+							</p>
+						</div>
+					</section>
+	<?php
+	$thumPic =	thumbnail($dest,"50_"."gocoder_net".$type,$file_ext,300,300,50); 
+	?>				
+					<section class="feature left">
+						<a href="<?=$thumPic[0]?>" class="image fa-signal"><img src="<?=$thumPic[0]?>" alt=""  width="100%" /></a>
+						<div class="content">
+							<h3>50%</h3>
+							<p>
+							가로 : <?=$thumPic[1]?>	   <br>
+							세로 : <?=$thumPic[2]?>							
+							</p>
+						</div>
+					</section>
+	<?php
+	$thumPic =	thumbnail($dest,"40_"."gocoder_net".$type,$file_ext,300,300,40); 
+	?>				
+					<section class="feature right">
+						<a href="<?=$thumPic[0]?>" class="image fa-signal"><img src="<?=$thumPic[0]?>" alt=""  width="100%" /></a>
+						<div class="content">
+							<h3>40%</h3>
+							<p>
+							가로 : <?=$thumPic[1]?>	   <br>
+							세로 : <?=$thumPic[2]?>							
+							</p>
+						</div>
+					</section>
+	<?php
+	$thumPic =	thumbnail($dest,"30_"."gocoder_net".$type,$file_ext,300,300,30); 
+	?>				
+					<section class="feature left">
+						<a href="<?=$thumPic[0]?>" class="image fa-signal"><img src="<?=$thumPic[0]?>" alt=""  width="100%" /></a>
+						<div class="content">
+							<h3>30%</h3>
+							<p>
+							가로 : <?=$thumPic[1]?>	   <br>
+							세로 : <?=$thumPic[2]?>							
+							</p>
+						</div>
+					</section>
+	<?php
+	$thumPic =	thumbnail($dest,"20_"."gocoder_net".$type,$file_ext,300,300,20); 
+	?>				
+					<section class="feature right">
+						<a href="<?=$thumPic[0]?>" class="image fa-signal"><img src="<?=$thumPic[0]?>" alt=""  width="100%" /></a>
+						<div class="content">
+							<h3>20%</h3>
+							<p>
+							가로 : <?=$thumPic[1]?>	   <br>
+							세로 : <?=$thumPic[2]?>							
+							</p>
+						</div>
+					</section>
+	<?php
+	$thumPic =	thumbnail($dest,"10_"."gocoder_net".$type,$file_ext,300,300,10); 
+	?>				
+					<section class="feature left">
+						<a href="<?=$thumPic[0]?>" class="image fa-signal"><img src="<?=$thumPic[0]?>" alt=""  width="100%" /></a>
+						<div class="content">
+							<h3>10%</h3>
+							<p>
+							가로 : <?=$thumPic[1]?>	   <br>
+							세로 : <?=$thumPic[2]?>							
+							</p>
+						</div>
+					</section>
+	<?php
+	$thumPic =	thumbnail($dest,"5_"."gocoder_net".$type,$file_ext,300,300,5); 
+	?>				
+					<section class="feature right">
+						<a href="<?=$thumPic[0]?>" class="image fa-signal"><img src="<?=$thumPic[0]?>" alt=""  width="100%" /></a>
+						<div class="content">
+							<h3>5%</h3>
+							<p>
+							가로 : <?=$thumPic[1]?>	   <br>
+							세로 : <?=$thumPic[2]?>							
+							</p>
+						</div>
+					</section>
+				
+					<!-- <section class="feature right">
+						<a href="#" class="image fa-code"><img src="images/pic02.jpg" alt="" /></a>
+						<div class="content">
+							<h3>The Second Thing</h3>
+							<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
+						</div>
+					</section>
+				
+				
+					<section class="feature left">
+						<a href="#" class="image fa-signal"><img src="images/pic01.jpg" alt="" /></a>
+						<div class="content">
+							<h3>The First Thing</h3>
+							<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
+						</div>
+					</section>
+					<section class="feature right">
+						<a href="#" class="image fa-code"><img src="images/pic02.jpg" alt="" /></a>
+						<div class="content">
+							<h3>The Second Thing</h3>
+							<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
+						</div>
+					</section>
+				
+					<section class="feature left">
+						<a href="#" class="image fa-signal"><img src="images/pic01.jpg" alt="" /></a>
+						<div class="content">
+							<h3>The First Thing</h3>
+							<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
+						</div>
+					</section>
+					<section class="feature right">
+						<a href="#" class="image fa-code"><img src="images/pic02.jpg" alt="" /></a>
+						<div class="content">
+							<h3>The Second Thing</h3>
+							<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
+						</div>
+					</section>
+				
+					<section class="feature left">
+						<a href="#" class="image fa-signal"><img src="images/pic01.jpg" alt="" /></a>
+						<div class="content">
+							<h3>The First Thing</h3>
+							<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
+						</div>
+					</section>
+					<section class="feature right">
+						<a href="#" class="image fa-code"><img src="images/pic02.jpg" alt="" /></a>
+						<div class="content">
+							<h3>The Second Thing</h3>
+							<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
+						</div>
+					</section>				
+				</div> -->
+			<?}?>	
+
+				<!-- <footer class="major container 75%">
+					<h3>Get shady with science</h3>
+					<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus.</p>
+					<ul class="actions">
+						<li><a href="#" class="button">Join our crew</a></li>
+					</ul>
+				</footer> -->
+
+			</div>
+
+		<!-- Footer -->
+			<div id="footer">
+				<div class="container 75%">
+
+					<ul class="copyright">
+						
+						<span class="copyright"> Powerd by : <a href="http://gocoder.net" target="_blank"> GoCoder.Net </span>
+						<img src="http://gocoder.net/files/attach/images/316/579352df9b34f49b518bd5e4542c910c.png" height="40px">
+					
+					</ul>
+
+				</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="/tools/picsmall/assets/js/jquery.min.js"></script>
+			<script src="/tools/picsmall/assets/js/skel.min.js"></script>
+			<script src="/tools/picsmall/assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="/tools/picsmall/assets/js/main.js"></script>
+
+	</body>
+</html>
+<?@unlink($save_dir . $_FILES["upload_file"]["name"]);?>
+
+
+<?php include_once('../analytics.php');?>

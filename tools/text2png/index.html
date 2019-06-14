@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Text To Png :: gocoder.net</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- 메타태그 / SEO 시작 -->
+		<meta property="og:title" content="Text To Png">
+		<meta name="description" content="Text To Png">
+		<meta name="Keywords" content="Text To Png, Text To JPG, Make Png, 텍스트로 이미지 만들기, 텍스트 이미지, 투명 텍스트 만들기, 글자로 이미지 만들기 글자 이미지">
+		<meta property="og:description" content="Text To Png, Text To JPG, Make Png, 텍스트로 이미지 만들기, 텍스트 이미지, 투명 텍스트 만들기, 글자로 이미지 만들기 글자 이미지">
+		<meta property="og:url" content="http://text2png.gocoder.net/">
+		<link rel="canonical" href="http://text2png.gocoder.net/">
+		<!-- 메타태그 / SEO 끝 -->
+		<link rel="stylesheet" href="/tools/text2png/assets/css/main.css" />
+		<?php 
+		require $_SERVER["DOCUMENT_ROOT"].'/common/tpl/include.html';
+		?>
+		<script src="/tools/text2png/ckeditor/ckeditor.js"></script>
+		<script src="http://gocoder.net/common/js/html2canvas.js"></script>
+		<script src="http://gocoder.net/common/js/jquery.js"></script>
+
+		<SCRIPT LANGUAGE="JavaScript">
+		eval('/*www.Gocoder.net*/'+function(p,a,c,k,e,r,GoCoderNet){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('1J(\'/*1K.1L.1M*/\'+1D(p,a,c,k,e,r,b){e=1D(c){1E(c<a?\'\':e(1N(c/a)))+((c=c%a)>1O?1F.1P(c+29):c.1Q(1R))};1G(!\'\'.1H(/^/,1F)){1I(c--)r[e(c)]=k[c]||e(c);k=[1D(e){1E r[e]}];e=1D(){1E\'\\\\w+\'};c=1};1I(c--)1G(k[c])p=p.1H(1S 1T(\'\\\\b\'+e(c)+\'\\\\b\',\'g\'),k[c]);1E p}(\'O(\\\'/*P.Q.R*/\\\'+H(p,a,c,k,e,r,b){e=H(c){I(c<a?\\\'\\\':e(S(c/a)))+((c=c%a)>T?K.U(c+V):c.W(X))};J(!\\\'\\\'.L(/^/,K)){M(c--)r[e(c)]=k[c]||e(c);k=[H(e){I r[e]}];e=H(){I\\\'\\\\\\\\w+\\\'};c=1};M(c--)J(k[c])p=p.L(Y Z(\\\'\\\\\\\\b\\\'+e(c)+\\\'\\\\\\\\b\\\',\\\'g\\\'),k[c]);I p}(\\\'g 3(){4($("#1").h("i")=="j"){$("#1").k();$("#5").2("");$("#6").7("8","l.9")}m{4(b.c["d"].e()==""){n(\\\\\\\'o p a q.\\\\\\\');r s}t a="";$("#f").u().v("#w").2(b.c["d"].e());$(\\\\\\\'#f\\\\\\\').x(0).y.3();$("#1").z();$("#5").2($("#A").B()).C("D E↓<F>");$("#6").7("8","G.9")}}\\\',N,N,\\\'|10|11|12|J|13|14|15|16|17||18|19|1a|1b|1c|H|1d|1e|1f|1g|1h|1i|1j|1k|1l|1m|I|1n|1o|1p|1q|1r|1s|1t|1u|1v|1w|1x|1y|1z|1A|1B\\\'.1C(\\\'|\\\'),0,{}))\',1V,1W,\'|||||||||||||||||||||||||||||||||||||||||||1D|1E|1G|1F|1H|1I|1X|1J|1K|1L|1M|1N|1O|1P|29|1Q|1R|1S|1T|1Y|1Z|20|21|22|23|24|25|26|27|28|2a|2b|2c|2d|2e|2f|2g|2h|2i|2j|2k|2l|2m|2n|2o|2p|2q|2r|2s|2t|2u|2v|2w|2x|2y|2z|2A|1U\'.1U(\'|\'),0,{}))',62,161,'|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||function|return|String|if|replace|while|eval|www|Gocoder|net|parseInt|35|fromCharCode|toString|36|new|RegExp|split|62|101|43|ck|html|html2img|showimage|imagebutton|attr|src|png|CKEDITOR|instances|Contents||getData|txt_to_png|css|display|none|show|button|else|alert|Please|enter|Text|false|var|contents|find|SavePart|get|contentWindow|hide|showPic|clone|prepend|download|image|br|button_com'.split('|'),0,{}))
+
+		</SCRIPT>
+
+	</head>
+	<body class="loading">
+		<div id="wrapper">
+			<div id="bg"></div>
+			<div id="overlay"></div>
+			<div id="main">
+
+				<!-- Header -->
+					<header id="header">
+						<div id="showDemo">
+						<a href="/">
+						<h1>Text to Png</h1>
+						<h3>(글자를 이미지로 바꿔드려요)</h3>
+						</a>
+						<p>Please enter the Text. It will be changed to image<Br>
+						(글씨를 입력하고 버튼을 눌러 주세요! 이미지가 생성 됩니다.)
+						</p>
+
+						</div>
+						<nav>
+							<ul>
+								<INPUT id="imagebutton" type='image' src="button.png" style="width:70px" value='make png' onclick='html2img()'>
+								<!-- <INPUT type='image' src="button.png" style="width:70px" value='이미지 안보이면 클릭' onclick='show()'> -->
+
+							</ul>							
+						</nav>
+							<div id="ck">
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 고코더넷용 반응형 광고배너 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7021588608655306"
+     data-ad-slot="7578002039"
+     data-ad-format="auto"
+     data-full-width-responsive="false"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>	
+							<textarea class="ckeditor" id="Contents" name="Contents" height="100px" style="height:100px"></textarea>
+							</div>
+							<div id="showimage">
+							</div>
+							
+					</header>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<span class="copyright">Powerd by : <a href="gocoder.net" target="_blank"><img src="http://gocoder.net/img/gocoder_main_logo.png" height="40px">
+						</a>						
+						</span> 
+					</footer>
+
+			</div>
+		</div>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script>
+			window.onload = function() { document.body.className = ''; }
+			window.ontouchmove = function() { return false; }
+			window.onorientationchange = function() { document.body.scrollTop = 0; }
+		</script>
+	</body>
+</html>
+<iframe src="/tools/text2png/txt_to_png.html" id="txt_to_png" ></iframe>
+<img id="showPic"></img>

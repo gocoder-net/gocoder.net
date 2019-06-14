@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>고코더넷 포토샵</title>
+	<meta charset="utf-8" />
+    <style type="text/css">
+        canvas{border: 1px solid black};
+    </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+  <script src="/tools/paint/color/jquery.minicolors.js"></script>
+  <script src="/tools/paint/color_picker.js"></script>
+  <script src="/tools/paint/tools.js"></script>
+
+  <link rel="stylesheet" href="/tools/paint/color/jquery.minicolors.css">
+
+
+</head>
+<body>
+    <div style="cursor:crosshair">
+        <canvas id="canvas" width="800" height="800">
+ 
+        </canvas>
+    </div>
+
+	<div style="cursor:text">
+		
+
+		글씨색상 선택
+
+		 <input type="text" id="fillColor" class="form-control demo" data-control="hue" value="#000000">
+
+		선 굵기
+
+		 <input type="text" id="fillWidth" class="form-control" value="1">
+
+		지우개
+
+		 사용<input type="radio" name="fillRemove" id="fillRemove_0" class="" value="0">
+		 사용안함<input type="radio" name="fillRemove" id="fillRemove_1" class="" value="1" checked="checked" >
+
+		
+    </div> 
+
+</body>
+</html>
+
+

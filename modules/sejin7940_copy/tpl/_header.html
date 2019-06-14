@@ -1,0 +1,20 @@
+<!--@if(substr(__XE_VERSION__,0,3) < '1.7')-->
+	<load target="./css/bootstrap.css" />
+	<load target="./css/admin17.css"  />
+	<load target="./css/admin17.bootstrap.css" />
+<!--@end-->
+
+<load target="js/sejin7940_copy_admin.js"  />
+
+<div class="x_page-header">
+	<h1>
+		{$lang->sejin7940_copy}  <span class="gray">{$lang->cmd_management}</span>
+	</h1>
+<div>
+
+
+<ul class="x_nav x_nav-tabs">
+	<!--<li class="x_active"|cond="$act=='dispSejin7940_copyAdminConfig'"><a href="{getUrl('','module','admin','act','dispSejin7940_copyAdminConfig')}">자동 복사</a></li>-->
+	<li class="x_active"|cond="$act=='dispSejin7940_copyAdminCopy'"><a href="{getUrl('','module','admin','act','dispSejin7940_copyAdminCopy')}">수동 복사</a></li>
+</ul>
+

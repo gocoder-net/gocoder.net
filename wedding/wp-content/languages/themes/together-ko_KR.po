@@ -1,0 +1,418 @@
+# Translation of Themes - Together in Korean
+# This file is distributed under the same license as the Themes - Together package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-09-25 23:34:04+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: ko_KR\n"
+"Project-Id-Version: Themes - Together\n"
+
+#. Description of the plugin/theme
+msgid "TOGETHER is a wedding WordPress theme which specially designed for marriage, engagement, personal, wedding websites. It is optimized and targeted to create clean and beautiful wedding websites and blogs quickly and easily. Theme included theme customizer for live editing and easy to manage homepage through home page builder. It includes color schemes, header and footer option, custom banner images, social profiles and more features for your ease to create elegant websites. Please find more details about theme at http://daisythemes.com/theme/together/ and Demo at http://demo.daisythemes.com/together/"
+msgstr "TOGETHER는 웨딩 워드프레스 테마이며 특히 결혼, 약혼, 개인 또는 웨딩 웹사이트를 위해 디자인 됐습니다. 깨끗하고 아름다운 웨딩 웹사이트와 블로그를 쉽고 빠르게 만들 수 있도록 최적화 됐습니다. 테마는 실시간 편집을 위해 사용자 정의하기가 포함되며 홈 페이지 빌더를 통해 홈 페이지를 관리할 수 있습니다. 컬러 스킴, 헤더 및 푸터 옵션, 사용자 정의 배너 이미지, 소셜 프로필, 기타 우아한 웹사이트를 쉽게 만들기 위한 기능이 포함됩니다. 테마에 관한 상세는 http://daisythemes.com/theme/together/ 에서 확인해주세요. 데모는 http://demo.daisythemes.com/together/ 에서 확인할 수 있습니다."
+
+#. Theme Name of the plugin/theme
+msgid "Together"
+msgstr "Together"
+
+#: inc/customizer.php:445
+msgid "Contact Form 7 Shortcode."
+msgstr "Contact Form 7 단축코드."
+
+#: inc/customizer.php:431
+msgid "Title"
+msgstr "타이틀"
+
+#: inc/customizer.php:426
+msgid "Join Our Wedding"
+msgstr "우리의 웨딩에 참여하기"
+
+#. #-#-#-#-#  together.pot (Together 1.0.6)  #-#-#-#-#
+#. Author of the plugin/theme
+#: footer.php:37
+msgid "FameThemes"
+msgstr "FameThemes"
+
+#. translators: %s: Name of current post.
+#: template-parts/content.php:35
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "%s 더보기 <span class=\"meta-nav\">&rarr;</span>"
+
+#: template-parts/content-page.php:22 template-parts/content.php:40
+msgid "Pages:"
+msgstr "페이지:"
+
+#: template-parts/content-none.php:31
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "찾고 있는 것을 찾을 수 없는 것 같습니다. 검색이 도움이 될 수도 있습니다."
+
+#: template-parts/content-none.php:25
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "죄송하지만 검색어와 일치하는 것이 없습니다. 다른 검색어로 다시 시도해보세요."
+
+#: template-parts/content-none.php:21
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "첫 번째 글을 발행할 준비가 됐나요? <a href=\"%1$s\">여기서 시작하세요</a>."
+
+#: template-parts/content-none.php:14
+msgid "Nothing Found"
+msgstr "찾을 수 없습니다"
+
+#: search.php:22
+msgid "Search Results for: %s"
+msgstr "결색 결과: %s"
+
+#: inc/widgets/widgets.php:233
+msgid "Dribbble"
+msgstr "Dribbble"
+
+#: inc/widgets/widgets.php:228
+msgid "Behance"
+msgstr "Behance"
+
+#: inc/widgets/widgets.php:223
+msgid "Linkedin"
+msgstr "링트인"
+
+#: inc/widgets/widgets.php:218
+msgid "Vimeo"
+msgstr "비미오"
+
+#: inc/widgets/widgets.php:213
+msgid "YouTube"
+msgstr "유투브"
+
+#: inc/widgets/widgets.php:208
+msgid "WordPress"
+msgstr "워드프레스"
+
+#: inc/widgets/widgets.php:203
+msgid "Pinterest"
+msgstr "핀터레스트"
+
+#: inc/widgets/widgets.php:198
+msgid "Flickr"
+msgstr "플리커"
+
+#: inc/widgets/widgets.php:193
+msgid "Github"
+msgstr "깃허브"
+
+#: inc/widgets/widgets.php:188
+msgid "Instagram"
+msgstr "인스타그램"
+
+#: inc/widgets/widgets.php:183
+msgid "G plus"
+msgstr "구글 플러스"
+
+#: inc/widgets/widgets.php:178
+msgid "Twitter"
+msgstr "트위터"
+
+#: inc/widgets/widgets.php:173
+msgid "Facebook"
+msgstr "페이스북"
+
+#: inc/widgets/widgets.php:60
+msgid "Social Icons"
+msgstr "소셜 아이콘"
+
+#: inc/widgets/widgets.php:57
+msgid "Daisy: Social Icons"
+msgstr "데이지: 소셜 아이콘"
+
+#: inc/widgets/widgets.php:26
+msgid "Add widgets to Show widgets at Footer Position"
+msgstr "푸터 위치에 위젯 추가"
+
+#: inc/widgets/widgets.php:24
+msgid "Footer Widget Position"
+msgstr "푸터 위젯 위치"
+
+#: inc/widgets/widgets.php:14
+msgid "Add widgets to Show widgets at sidebar"
+msgstr "사이드바에 위젯 추가"
+
+#: inc/widgets/widgets.php:12
+msgid "Sidebar"
+msgstr "사이드바"
+
+#. translators: %s: Name of current post
+#: inc/template-tags.php:71 template-parts/content-page.php:33
+msgid "Edit %s"
+msgstr "편집 %s"
+
+#: inc/template-tags.php:64
+msgid "% Comments"
+msgstr "% 댓글"
+
+#: inc/template-tags.php:64
+msgid "1 Comment"
+msgstr "1 댓글"
+
+#: inc/template-tags.php:64
+msgid "Leave a comment"
+msgstr "댓글 달기"
+
+#: inc/template-tags.php:58
+msgid "Tagged %1$s"
+msgstr "태그 %1$s"
+
+#: inc/template-tags.php:52
+msgid "Posted in %1$s"
+msgstr "카테고리 %1$s"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:50 inc/template-tags.php:56
+msgid ", "
+msgstr ", "
+
+#: inc/template-tags.php:33
+msgctxt "post author"
+msgid "by %s"
+msgstr "작성자 %s"
+
+#: inc/template-tags.php:28
+msgctxt "post date"
+msgid "Posted on %s"
+msgstr "작성일자 %s"
+
+#: inc/customizer.php:513
+msgid "Set Default Font Size"
+msgstr "기본 폰트 크기 설정"
+
+#: inc/customizer.php:502
+msgid "Default Font Size"
+msgstr "기본 폰트 크기"
+
+#: inc/customizer.php:493
+msgid "Choose Category"
+msgstr "카테고리를 선택하세요"
+
+#: inc/customizer.php:481 inc/customizer.php:547
+msgid "Title for Recent Posts"
+msgstr "최근 글 제목"
+
+#: inc/customizer.php:467 inc/customizer.php:533
+msgid "Show Recent Blog Post"
+msgstr "블로그 최근 글 보이기"
+
+#: inc/customizer.php:454 inc/customizer.php:520
+msgid "Recent Blog Posts"
+msgstr "블로그의 최근 글"
+
+#: inc/customizer.php:418
+msgid "Check to enable RSVP Widget Location"
+msgstr "RSVP 위젯 위치를 활성화 하려면 체크하세요"
+
+#: inc/customizer.php:403
+msgid "RSVP"
+msgstr "RSVP"
+
+#: inc/customizer.php:396
+msgid "Phone for Wedding Party"
+msgstr "웨딩 파티 전화"
+
+#: inc/customizer.php:381
+msgid "Time for Wedding Party"
+msgstr "웨딩 파티 시간"
+
+#: inc/customizer.php:366
+msgid "Date for Wedding Party"
+msgstr "웨딩 파티 날짜"
+
+#: inc/customizer.php:351
+msgid "Address for Wedding Party"
+msgstr "웨딩 파티 주소"
+
+#: inc/customizer.php:336
+msgid "Image for Wedding Party"
+msgstr "웨딩 파티 이미지"
+
+#: inc/customizer.php:323
+msgid "Title for Wedding Party"
+msgstr "웨딩 파티 제목"
+
+#: inc/customizer.php:307
+msgid "Phone for Wedding Ceremony"
+msgstr "결혼식 전화"
+
+#: inc/customizer.php:292
+msgid "Time for Wedding Ceremony"
+msgstr "결혼식 시간"
+
+#: inc/customizer.php:277
+msgid "Date for Wedding Ceremony"
+msgstr "결혼식 날짜"
+
+#: inc/customizer.php:262
+msgid "Address for Wedding Ceremony"
+msgstr "결혼식 주소"
+
+#: inc/customizer.php:247
+msgid "Image for Wedding Ceremony"
+msgstr "결혼식 이미지"
+
+#: inc/customizer.php:234
+msgid "Title for Wedding Ceremony"
+msgstr "결혼식 제목"
+
+#: inc/customizer.php:219
+msgid "Check to enable Wedding Ceremony Details"
+msgstr "결혼식 상세를 활성화 하려면 체크하세요"
+
+#: inc/customizer.php:204
+msgid "Wedding Ceremony Details"
+msgstr "결혼식 상세"
+
+#: inc/customizer.php:196
+msgid "Select Page for Bride"
+msgstr "신부 페이지 선택"
+
+#: inc/customizer.php:183
+msgid "Select Page for Groom"
+msgstr "신랑 페이지 선택"
+
+#: inc/customizer.php:170
+msgid "Check to enable About Couple"
+msgstr "커플 소개를 활성화 하려면 체크하세요"
+
+#: inc/customizer.php:159 inc/customizer.php:455 inc/customizer.php:521
+msgid "home_page_builder"
+msgstr "home_page_builder"
+
+#: inc/customizer.php:157
+msgid "About Couple Section"
+msgstr "커플 소개 영역"
+
+#: inc/customizer.php:150
+msgid "Home Page Builder"
+msgstr "홈페이지 빌더"
+
+#: inc/customizer.php:142
+msgid "Wedding Count Down Date Picker"
+msgstr "웨딩 카운트 다운 날짜 피커"
+
+#: inc/customizer.php:131
+msgid "Wedding Count Down"
+msgstr "웨딩 카운트 다운"
+
+#: inc/customizer.php:124
+msgid "Header Background Color"
+msgstr "헤더 배경 색상"
+
+#: inc/customizer.php:109
+msgid "Meta Color"
+msgstr "메타 색상"
+
+#: inc/customizer.php:94
+msgid "Paragraph Color"
+msgstr "문단 색상"
+
+#: inc/customizer.php:79
+msgid "Font Color"
+msgstr "폰트 색상"
+
+#: inc/customizer.php:64
+msgid "Primary Color"
+msgstr "주 색상"
+
+#: inc/customizer.php:36
+msgid "Select"
+msgstr "선택"
+
+#: inc/template-tags.php:185
+msgid "Search Results"
+msgstr "검색 결과"
+
+#: inc/template-tags.php:183
+msgid "Blog Archive"
+msgstr "블로그 글보관함"
+
+#: inc/template-tags.php:181
+msgid "Author Archive"
+msgstr "글쓴이 글보관함"
+
+#: inc/template-tags.php:175 inc/template-tags.php:177
+#: inc/template-tags.php:179
+msgid "Archive for"
+msgstr "글보관함"
+
+#: inc/template-tags.php:149
+msgid "Home"
+msgstr "홈"
+
+#: functions.php:61
+msgid "Primary"
+msgstr "프라이머리"
+
+#: front-page.php:239
+msgid "Sorry, no posts matched."
+msgstr "죄송합니다. 조건에 맞는 글이 없습니다."
+
+#: front-page.php:18
+msgid "About the Couple"
+msgstr "커플 소개"
+
+#: footer.php:37
+msgid "Designed by"
+msgstr "디자인"
+
+#: footer.php:35
+msgid "Powered %1$s by %2$s"
+msgstr "Powered %1$s by %2$s"
+
+#: footer.php:32
+msgid "Copyright &copy;"
+msgstr "Copyright &copy;"
+
+#: comments.php:78
+msgid "Comments are closed."
+msgstr "댓글이 닫혀있습니다."
+
+#: comments.php:44 comments.php:65
+msgid "Newer Comments"
+msgstr "새 댓글"
+
+#: comments.php:43 comments.php:64
+msgid "Older Comments"
+msgstr "이전 댓글"
+
+#: comments.php:40 comments.php:61
+msgid "Comment navigation"
+msgstr "댓글 내비게이션"
+
+#: comments.php:31
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "&ldquo;%2$s&rdquo;의 %1$s개의 댓글"
+
+#: archive.php:58 front-page.php:333 home.php:63
+msgid "Sorry, no posts matched your criteria."
+msgstr "죄송합니다. 범위에 일치하는 글이 없습니다."
+
+#: archive.php:40 front-page.php:314 home.php:45
+msgid "Read more"
+msgstr "더보기"
+
+#: 404.php:25
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "이 위치에서 아무 것도 찾을 수 없을 것 같습니다. 아래의 링크 또는 검색 중 하나를 하세요."
+
+#: 404.php:21
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "이런! 해당 페이지를 찾을 수 없습니다."
+
+#. Author URI of the plugin/theme
+msgid "https://www.famethemes.com/"
+msgstr "https://www.famethemes.com/"
+
+#. Theme URI of the plugin/theme
+msgid "https://www.famethemes.com/theme/together/"
+msgstr "https://www.famethemes.com/theme/together/"

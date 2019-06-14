@@ -1,0 +1,173 @@
+									  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>goEpub Reader : GoCoderNet </title>
+<!--
+Copyright (c) 2010 Joseph Pearson
+Copyright (c) 2013 Robert Schroll
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+<script src="/tools/epub/js/zip.js"></script>
+<script src="/tools/epub/js/monocore.js"></script>
+<script src="/tools/epub/js/monoctrl.js"></script>
+<script src="efm.js"></script>
+		<?php 
+		require $_SERVER["DOCUMENT_ROOT"].'/common/tpl/include.html';
+		?>
+<script type="text/javascript" charset="utf-8">
+// This is some basic code for using Monocle with EFM.
+// First, we need to tell zip.js where to find its accessory files.
+zip.workerScriptsPath = "js/"
+
+// An event handler for our file input.
+function fileSelected(event) {
+    var files = event.target.files;
+	_files = files;
+    if (files.length > 0)
+        new Epub(files[0], createReader);
+}
+
+// This will be called when the Epub object is fully initialized and
+// ready to get passed to the Monocle.Reader.
+function createReader(bookData) {
+	_bookData = bookData;
+    Monocle.Reader("reader", bookData,  // The id of the reader element and the book data.
+        { flipper: Monocle.Flippers.Instant,  // The rest is just fanciness:
+          panels: Monocle.Panels.Magic },     // No animation and click anywhere
+        function (reader) {                   // to turn pages.
+            var stencil = new Monocle.Controls.Stencil(reader);  // Make internal links work.
+            reader.addControl(stencil);
+            var toc = Monocle.Controls.Contents(reader);         // Add a table of contents.
+            reader.addControl(toc, 'popover', { hidden: true });
+            createBookTitle(reader, { start: function () { reader.showControl(toc); } });
+        }
+    );
+}
+
+// This adds the book title to the top of each page.
+function createBookTitle(reader, contactListeners) {
+    var bt = {}
+    bt.createControlElements = function () {
+        cntr = document.createElement('div');
+        cntr.className = "bookTitle";
+        runner = document.createElement('div');
+        runner.className = "runner";
+        runner.innerHTML = reader.getBook().getMetaData('title');
+        cntr.appendChild(runner);
+        if (contactListeners) {
+            Monocle.Events.listenForContact(cntr, contactListeners);
+        }
+        return cntr;
+    }
+    reader.addControl(bt, 'page');
+    return bt;
+}
+</script>
+<link rel="stylesheet" type="text/css" href="/tools/epub/css/monocore.css" />
+<link rel="stylesheet" type="text/css" href="/tools/epub/css/monoctrl.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
+<style type="text/css">
+body {
+    background: #fff;
+    font-family: "sans-serif";
+}
+h1 {
+    text-align: center;
+}
+#reader {
+    width: 600px;
+    height: 800px;
+    border: 1px solid black;
+    margin: 0 auto;
+    background: white;
+}
+#reader p {
+    margin: 1em;
+}
+.runner {
+    font-variant: small-caps;
+    font-size: 87%;
+    color: #900;
+}
+.bookTitle {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+body > p {
+    width: 450px;
+    margin: 1em auto;
+}
+</style>
+<script src="http://gocoder.net/common/js/jquery.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $(document).ready( function() {
+	$("#reader").css("height",$( window ).height()-(($( window ).height()/100)*30));
+	$("#reader").css("width",$( window ).width()-(($( window ).width()/100)*30));
+
+	$("#reader").resizable();
+  });
+  </script>
+</head>
+
+<body style="background-color:#2E2E2E;">
+
+<ul>
+	<a href="http://gocoder.net" target="_blank">
+		<img src="http://gocoder.net/img/gocoder_main_logo.png">	
+	</a>
+
+</ul>
+
+<ul >
+<div id="reader" class="ui-widget-content">
+<p>
+
+Enter Your .Epub File:
+
+</p>
+	<input type="file" id="file" accept="application/epub+zip" onchange="fileSelected(event)" />
+</div>
+</ul>
+<ul style="align-content: center;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 고코더넷용 반응형 광고배너 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7021588608655306"
+     data-ad-slot="7578002039"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+</ul>
+
+
+</body>
+</html>
+

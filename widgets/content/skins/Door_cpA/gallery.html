@@ -1,0 +1,87 @@
+
+{@ $widget_info->slider_name = 'gySliderBot_'.rand(100000,500000).rand(100000,500000);}
+<script type="text/javascript">
+			jQuery(function($){
+			
+			  $('.{$widget_info->slider_name}').owlCarousel({
+				nav:true,
+				items:1,
+				loop:true,
+				autoplay:true,
+				margin:10,
+				responsive:{
+					0:{
+					items:2
+					},
+					376:{
+						items:2
+					},
+					533:{
+						items:3
+					},
+					1020:{
+						items:2
+					}
+				}
+               
+             });
+		});
+		</script>
+<style type="text/css">
+  
+    .{$widget_info->slider_name} .item img.DW_img{
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+</style>
+<div class="">
+	<div class="owl-small owl-smallB owl-carousel {$widget_info->slider_name}">
+	<!--@foreach($widget_info->content_items as $key => $item)-->
+		<div class="item">
+			<div class="in_item_slide">
+				<a href="{$item->getLink()}" class="DCP_box_link" target="_blank"|cond="$widget_info->new_window">
+					<!--@if($item->getThumbnail())-->
+					<img class="DW_img" src="{$item->getThumbnail()}" alt="">
+					<!--@else-->
+					<img class="DW_img" src="img/noneLarge_img.gif" alt="">
+					<!--@end-->
+				</a>
+			</div>
+			<!--@for($j=0,$c=count($widget_info->option_view_arr);$j<$c;$j++)-->
+			 <!--@if($widget_info->option_view_arr[$j]=='title')-->
+			<div class="slide_title">
+					<!--@if($widget_info->show_browser_title=='Y' && $item->getBrowserTitle())-->
+                        <a href="{getSiteUrl($item->domain, '', 'mid', $item->get('mid'))}" class="board" target="_blank"|cond="$widget_info->new_window">{$item->getBrowserTitle()}</a>
+                    <!--@end-->
+
+                    <!--@if($widget_info->show_category=='Y' && $item->getCategory())-->
+                        <a href="{getSiteUrl($item->domain,'','mid',$item->get('mid'),'category',$item->get('category_srl'))}" target="_blank"|cond="$widget_info->new_window"><strong class="category">{$item->getCategory()}</strong></a>
+                    <!--@end-->
+				<a href="{$item->getLink()}" class="title" target="_blank"|cond="$widget_info->new_window">{$item->getTitle($widget_info->subject_cut_size)}</a>
+			</div>
+			<!--@else if($widget_info->option_view_arr[$j]=='nickname')-->
+			<div class="wrap_replyNum">
+				<span class="slide_block padding_right10"> BY : <a href="#" onclick="return false;" class="author member_{$item->getMemberSrl()}" target="_blank"|cond="$widget_info->new_window">{$item->getNickName($widget_info->nickname_cut_size)}</a></span>
+
+				<!--@if($widget_info->option_view_arr[$j+1]=='regdate')-->
+				 <span class="date padding_right10"><span class="slide_block"> DATE : </span>{$item->getRegdate("m.d")}</span>
+				<!--@end-->
+				<!--@if($widget_info->show_comment_count=='Y' && $item->getCommentCount())-->
+					<span class="replyNum  padding_right10" title="Replies"><span class="slide_block"> COMMENT : </span><a href="{$item->getLink()}#comment" target="_blank"|cond="$widget_info->new_window">{$item->getCommentCount()}</a> </span>
+				<!--@elseif($widget_info->show_comment_count=='Y')-->
+					<span class="replyNum  padding_right10" title="Replies"><span class="slide_block"> COMMENT : </span>0</span>
+				<!--@end-->
+				
+			</div>
+			 <!--@else if($widget_info->option_view_arr[$j]=='content')-->
+				<div class="slide_content">
+					<a href="{$item->getLink()}" class="title" target="_blank"|cond="$widget_info->new_window"> {$item->getContent()}</a>	
+				</div>
+			<!--@end-->
+			<!--@end-->
+			
+		</div>
+	<!--@end-->
+	</div>
+</div>

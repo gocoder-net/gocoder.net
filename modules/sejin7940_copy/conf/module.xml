@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<grants>
+		
+	</grants>
+	<actions>
+        <action name="procSejin7940_copyCopyBoard" type="controller"  />		
+
+		<action name="dispSejin7940_copyAdminConfig" type="view" />		
+		<action name="procSejin7940_copyAdminConfig" type="controller" />		
+		<action name="dispSejin7940_copyAdminCopy" type="view" admin_index="true"/>		
+		<action name="procSejin7940_copyAdminCopy" type="controller" />		
+		<action name="procSejin7940_copyAdminCopyBoard" type="controller" />		
+
+	</actions>
+</module>

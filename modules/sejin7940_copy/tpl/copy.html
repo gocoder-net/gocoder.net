@@ -1,0 +1,141 @@
+<include target="_header.html" />
+<load target="./js/sejin7940_copy_admin.js" />
+<load target="../../widget/tpl/js/widget_admin.js" />
+
+
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+<form action="./" method="post"  class="x_form-horizontal" >
+	<input type="hidden" name="act" value="procSejin7940_copyAdminCopy">
+	<input type="hidden" name="error_return_url" value="" />
+	<input type="hidden" name="module" value="{$module}" />
+	<input type="hidden" name="success_return_url" value="{getRequestUriByServerEnviroment()}" />
+
+	<section class="section">
+		<h1>복사 대상</h1>
+		<div cond="$logged_info->is_admin == 'Y'" class="x_control-group">
+			<label class="x_control-label" for="target_module">기준 {$lang->module}</label>
+			<!--@if($target_module)-->
+			{@
+			$oModuleModel = &getModel('module');
+			$target_info = $oModuleModel->getModuleInfoByModuleSrl($target_module);
+			}
+			<!--@end-->
+			<div class="x_controls">
+				<input type="hidden" name="target_module" id="target_module" value="{$target_module}" />
+				<input type="text" name="_target_module" id="_target_module" value="{$target_info->mid} ({$target_info->browser_title})" readonly="readonly" /><a href="{getUrl('','module','module','act','dispModuleSelectList','id','target_module','type','single')}" onclick="popopen(this.href,'ModuleSelect');return false;" class="button green"><span>{$lang->cmd_select}</span></a>
+			</div>
+		</div>
+
+
+		<div cond="$logged_info->is_admin == 'Y'" class="x_control-group">
+			<label class="x_control-label" for="target_module2">복사할 {$lang->module}</label>
+			<div class="x_controls">
+				<input type="hidden" name="target_module2" id="target_module2" value="{$target_module2}" />
+				<select name="_target_module2" id="_target_module2" size="8" style="display:block;margin:10px 0;"></select>
+
+				<a href="{getUrl('','module','module','act','dispModuleSelectList','id','target_module2')}" onclick="popopen(this.href, 'ModuleSelect');return false;" class="x_btn x_btn-primary"><span>{$lang->cmd_insert}</span></a>
+				<a href="#" onclick="midRemove('target_module2');return false;" class="x_btn"><span>{$lang->cmd_delete}</span></a>
+
+	
+				<!--@if(substr(__XE_VERSION__,0,3) == '1.7')-->
+				<script type="text/javascript">
+					jQuery( function() { getModuleSrlList('target_module2'); } );
+				</script>
+				<!--@end-->
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<h1>모든 설정 일괄 복사</h1>
+		<div class="x_control-group">
+			<label class="x_control-label" for="copy_all">게시판 모든 설정 일괄 복사</label>
+			<div class="x_controls">
+				<input type="radio" name="copy_all" value="Y" <!--@if($copy_all=='Y')-->checked<!--@end--> />전부 복사
+				<input type="radio" name="copy_all" value="N" <!--@if($copy_all=='N' || !$copy_all)-->checked<!--@end-->/>각각 세부 설정
+				<p class="x_help-block">전부복사시 하단의 세부설정과 무관하게 모든 사항을 다 복사. ( mid 와 module_srl, 브라우저제목을 제외하고는 전부 다 복사됨)</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<h1>설정 개별 복사 <span style="font-size:14px; padding-left:5px;">('각각 세부 설정' 으로 한 경우에만)</span></h1>
+		<div class="x_control-group">
+			<label class="x_control-label" for="copy_setting">게시판 기본 설정 복사 여부</label>
+			<div class="x_controls">
+				<input type="radio" name="copy_setting" value="Y" <!--@if($copy_setting=='Y')-->checked<!--@end--> />복사
+				<input type="radio" name="copy_setting" value="N" <!--@if($copy_setting=='N' || !$copy_setting)-->checked<!--@end-->/>복사 안함
+				<p class="x_help-block">기본적인 '게시판정보' 탭의 내역 (스킨,레이아웃,목록수,정렬 등) / '목록설정' 등을 복사</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="copy_category">카테고리(분류) 복사 여부</label>
+			<div class="x_controls">
+				<input type="radio" name="copy_category" value="Y" <!--@if($copy_category=='Y')-->checked<!--@end--> />복사
+				<input type="radio" name="copy_category" value="N" <!--@if($copy_category=='N' || !$copy_category)-->checked<!--@end--> />복사 안함
+				<p class="x_help-block">새로 복사할 게시판에 카테고리가 미리 만들어져 있으면 안 됨</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="copy_extra_vars">확장변수 복사 여부</label>
+			<div class="x_controls">
+				<input type="radio" name="copy_extra_vars" value="Y" <!--@if($copy_extra_vars=='Y')-->checked<!--@end--> />복사
+				<input type="radio" name="copy_extra_vars" value="N" <!--@if($copy_extra_vars=='N' || !$copy_extra_vars)-->checked<!--@end--> />복사 안함
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="copy_part">게시판 기본 설정 복사 여부</label>
+			<div class="x_controls">
+				<input type="radio" name="copy_part" value="Y" <!--@if($copy_part=='Y')-->checked<!--@end--> />복사
+				<input type="radio" name="copy_part" value="N" <!--@if($copy_part=='N' || !$copy_part)-->checked<!--@end--> />복사 안함
+				<p class="x_help-block">게시판 추가설정 (포인트,댓글,에디터,RSS)등을 복사</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="copy_skin">스킨설정 복사 여부</label>
+			<div class="x_controls">
+				<input type="radio" name="copy_skin" value="Y" <!--@if($copy_skin=='Y')-->checked<!--@end--> />복사
+				<input type="radio" name="copy_skin" value="N" <!--@if($copy_skin=='N' || !$copy_skin)-->checked<!--@end--> />복사 안함
+				<p class="x_help-block">단, 스킨설정 내에서 이미지를 저장한 부분이 있는 경우 이 이미지는 전부 원본을 향하므로 삭제하면, 원본 게시판의 해당 이미지도 삭제가 되는 한계가 있음</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="copy_mskin">모바일 스킨설정 복사 여부</label>
+			<div class="x_controls">
+				<input type="radio" name="copy_mskin" value="Y" <!--@if($copy_mskin=='Y')-->checked<!--@end--> />복사
+				<input type="radio" name="copy_mskin" value="N" <!--@if($copy_mskin=='N' || !$copy_mskin)-->checked<!--@end--> />복사 안함
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="copy_grant">권한설정 복사 여부</label>
+			<div class="x_controls">
+				<input type="radio" name="copy_grant" value="Y" <!--@if($copy_grant=='Y')-->checked<!--@end--> />복사
+				<input type="radio" name="copy_grant" value="N" <!--@if($copy_grant=='N' || !$copy_grant)-->checked<!--@end--> />복사 안함
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="copy_manager">게시판 관리자 복사 여부</label>
+			<div class="x_controls">
+				<input type="radio" name="copy_manager" value="Y" <!--@if($copy_manager=='Y')-->checked<!--@end--> />복사
+				<input type="radio" name="copy_manager" value="N" <!--@if($copy_manager=='N' || !$copy_manager)-->checked<!--@end--> />복사 안함
+			</div>
+		</div>
+	</section>
+
+
+
+	<div class="x_clearfix btnArea">
+		<!--
+		<div class="x_pull-left">
+			<a href="{getUrl('act', 'dispSejin7940_copyAdminCopy')}" type="button" class="x_btn">{$lang->cmd_cancel}</a>
+		</div>
+		-->
+		<div class="x_pull-right">
+			<button class="x_btn x_btn-primary" type="submit">{$lang->cmd_copy}</button>
+		</div>
+	</div>
+
+</form>

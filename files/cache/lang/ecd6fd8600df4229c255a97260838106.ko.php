@@ -1,0 +1,27 @@
+<?php
+$lang->maps_module_map='지도';
+$lang->maps_module_maps_list='지도 목록';
+$lang->maps_module_maps_write='지도 생성';
+$lang->maps_module_maps_edit='지도 편집';
+$lang->maps_module_maps_setting='지도 모듈 설정';
+$lang->maps_module_maps_srl='일련번호';
+$lang->maps_module_maps_title='제목';
+$lang->maps_module_untitled='제목 없는 지도';
+$lang->maps_module_no_description='지도 설명이 없습니다.';
+$lang->maps_search='주소 검색';
+$lang->maps_module_help='도움말';
+$lang->maps_module_result='검색 결과';
+$lang->about_maps_module_result_use='특정 위치를 표시 하고 싶을땐, 오른쪽 지도에서 해당 지점을 <strong>클릭</strong>하세요.<br />표시는 원하는 만큼 하실 수 있습니다.<br />표시를 지우고 싶을땐 표시를 클릭하세요.<br />검색창에 찾을 지역명을 검색 하시면, 이곳에 검색 결과가 나타납니다. 검색 결과가 1개 일 경우 바로 이동하며, 2개 이상일 경우는 선택해 주셔야 합니다.';
+$lang->maps_module_view_map='지도가 입력되어 있습니다.<br />지도를 보시려면 여기를 클릭하세요.';
+$lang->maps_saved='지도가 저장되었습니다.';
+$lang->maps_module_cmd_save_map='지도 저장';
+$lang->maps_module_msg_no_result='검색 결과가 없습니다.';
+$lang->maps_module_daum_local_api_key='다음 로컬 API 키';
+$lang->about_maps_module_daum_local_api_key='다음 로컬 APU 키를 입력하면, 주소-위치 변환에 다음 로컬 API를 활용할 수 있습니다.<br />다음 로컬 API 키는 https://dna.daum.net/myapi/dataapi/new 페이지에서 발급 받으실 수 있습니다.';
+$lang->maps_module_map_api_key='지도 API Key';
+$lang->about_maps_module_map_api_key='구글 지도를 이용하고 싶으실 경우 이 칸을 비워두세요.<br />다음, 네이버 또는 빙 지도 API 키를 입력하실 수 있습니다.<br />https://www.bingmapsportal.com/application 에서 빙 지도 API 키를 발급 받으실 수 있습니다.<br />https://dna.daum.net/myapi/mapsapi/new 에서 다음 지도형 API 중 JS 기반 지도 뷰를 발급 받으시거나,<br />https://developer.naver.com/openapi/register.nhn 에서 지도 API 키를 발급받은 후 입력해주세요.';
+$lang->maps_module_map_api_key_type='지도 API Key 발급자(다음, 네이버 API 사용시 권장)';
+$lang->maps_module_key_type_auto='자동 선택(다음 지도 아님)';
+$lang->maps_module_key_type_daum='다음';
+$lang->maps_module_key_type_descri='다음 지도 API Key 가 32자 인 경우 반드시 선택해주시기 바랍니다.';
+$lang->maps_module_fail_to_set='설정 실패';

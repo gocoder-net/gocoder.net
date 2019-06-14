@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget version="0.2">
+	<title xml:lang="ko">외부페이지 출력 위젯</title>
+	<description xml:lang="ko">XE 문서 외부페이지와 같은 방식으로 일정 부분에 외부페이지를 출력해주는 위젯입니다.</description>
+	<version>1.0</version>
+	<date>2014-08-09</date>
+	<author email_address="dh1024@gmail.com" link="http://eundong.net">
+		<name xml:lang="ko">Eundong</name>
+	</author>
+	<extra_vars>
+		<var id="path">
+			<type>text</type>
+			<name xml:lang="ko">외부 페이지 경로</name>
+			<description xml:lang="ko">외부 페이지 경로를 입력해주세요.
+			</description>
+		</var>
+	</extra_vars>
+</widget>

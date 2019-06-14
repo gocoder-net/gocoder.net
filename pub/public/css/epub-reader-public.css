@@ -1,0 +1,45 @@
+/**
+ * epub-reader
+ */
+
+
+.epub-reader-frame {
+	background: #fff;
+	width: 100%;
+	height: 100%;
+	border:none;
+}
+
+/* ePub Reader Page specific */
+html.epub-reader-html {
+}
+body.epub-reader-body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+body.epub-reader-body {
+	background-color: #fff;
+}
+
+
+body:not(.epub-reader-body) {
+	min-height: 300px; /* shortcode in a normal/other page */
+}
+
+body.epub-reader-body .epub-reader-frame {
+	margin: 0;
+	padding: 0;
+	/*z-index: 100000; higher than #wpadminbar */
+	position: absolute;
+	top:0;
+	left:0;
+}
+body.epub-reader-body::before, 
+body.epub-reader-body::after {
+	display: none; /* override some themes that use this! */
+}
+body.epub-reader-body #wpadminbar {
+	display: none; /* hide the admin bar -- it gets in the way of the frame's titlebar! */
+}
